@@ -23,7 +23,13 @@ from telegram.ext import (
 load_dotenv()
 
 BOT_TOKEN = os.environ.get("BOT_TOKEN", "")
-ADMIN_ID = int(os.environ.get("ADMIN_ID", "0") or 0)
+try:
+    ADMIN_ID = int(os.environ.get("ADMIN_ID", "0") or 0)
+except ValueError:
+    raise SystemExit(
+        "ADMIN_ID must be a numeric Telegram user ID. "
+        "Check your .env file (get your ID from @userinfobot)."
+    ) from None
 
 logging.basicConfig(
     format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
@@ -70,15 +76,21 @@ async def feedback_received(update: Update, context: ContextTypes.DEFAULT_TYPE) 
     """Receive the feedback text and finish the conversation."""
     text = update.message.text
     logger.info("Feedback from %s: %s", update.effective_user.id, text)
+    forwarded = False
     if ADMIN_ID:
         try:
             await context.bot.send_message(
                 chat_id=ADMIN_ID,
                 text=f"New feedback from {update.effective_user.full_name}:\n{text}",
             )
+            forwarded = True
         except Exception as exc:  # noqa: BLE001 - log and continue
             logger.warning("Could not forward feedback to admin: %s", exc)
-    await update.message.reply_text("Thanks! Your feedback has been sent.")
+    if forwarded:
+        await update.message.reply_text("Thanks! Your feedback has been sent.")
+    else:
+        # No admin configured, or forwarding failed: don't claim it was sent.
+        await update.message.reply_text("Thanks! Your feedback has been recorded.")
     return ConversationHandler.END
 
 
