@@ -23,12 +23,12 @@ Get your own Telegram user ID from [@userinfobot](https://t.me/userinfobot) and 
 
 | Command | Who can use it | What it does |
 | --- | --- | --- |
-| `/start` | Anyone | Replies: "Hello <your first name>! I am a bot built with the Telegram Bot Starter template. Try /help to see what I can do." |
+| `/start` | Anyone | Replies: "Hello &lt;your first name&gt;! I am a bot built with the Telegram Bot Starter template. Try /help to see what I can do." |
 | `/help` | Anyone | Lists the available commands. |
 | `/feedback` | Anyone | Starts a two-step conversation: the bot asks for your feedback, then forwards your next message to the admin if ADMIN_ID is set; otherwise it replies that your feedback has been recorded. |
 | `/cancel` | Anyone, during `/feedback` | Ends the feedback conversation. |
-| `/broadcast <message>` | Admin only | Demo only: it does not send to any users. It replies "Broadcast ready to send to all users:" followed by the message. Without a message it replies "Usage: /broadcast <message>", and a non-admin gets "Sorry, only the admin can use /broadcast." |
-| Any other text | Anyone | Echoes the message back as "You said: <your message>". |
+| `/broadcast <message>` | Admin only | Demo only: it does not send to any users. It replies "Broadcast ready to send to all users:" followed by the message. Without a message it replies "Usage: /broadcast &lt;message&gt;", and a non-admin gets "Sorry, only the admin can use /broadcast." |
+| Any other text | Anyone | Echoes the message back as "You said: &lt;your message&gt;". |
 
 ## Configuration
 
@@ -39,7 +39,7 @@ Get your own Telegram user ID from [@userinfobot](https://t.me/userinfobot) and 
 
 ## How feedback and broadcast work
 
-- Feedback: if `ADMIN_ID` is set, the bot forwards the message to the admin as "New feedback from <name>:" followed by the message, and replies "Thanks! Your feedback has been sent." If no admin is set, or forwarding fails, it replies "Thanks! Your feedback has been recorded."
+- Feedback: if `ADMIN_ID` is set, the bot forwards the message to the admin as "New feedback from &lt;name&gt;:" followed by the message, and replies "Thanks! Your feedback has been sent." If no admin is set, or forwarding fails, it replies "Thanks! Your feedback has been recorded."
 - Broadcast is a demo: there is no stored list of users, so it sends nothing to anyone; it only confirms the message as ready to send.
 - The bot runs with long polling (`run_polling()` in `bot.py`); there is no webhook setup.
 
