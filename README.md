@@ -6,7 +6,7 @@ A clean, minimal starter template for building Telegram bots with Python and [py
 
 - `/start` and `/help` commands
 - Echo replies for plain messages
-- `/feedback` conversation (two steps, forwards the message to the admin)
+- `/feedback` conversation (two steps, forwards the message to the admin when ADMIN_ID is set)
 - `/broadcast` admin-only command (demo version confirms the message instead of sending)
 - Config via `.env`, structured logging
 
@@ -23,9 +23,9 @@ Get your own Telegram user ID from [@userinfobot](https://t.me/userinfobot) and 
 
 | Command | Who can use it | What it does |
 | --- | --- | --- |
-| `/start` | Anyone | Replies: "Hello! I'm a starter bot. Send /help to see what I can do." |
+| `/start` | Anyone | Replies: "Hello <your first name>! I am a bot built with the Telegram Bot Starter template. Try /help to see what I can do." |
 | `/help` | Anyone | Lists the available commands. |
-| `/feedback` | Anyone | Starts a two-step conversation: the bot asks for your feedback, then forwards your next message to the admin. |
+| `/feedback` | Anyone | Starts a two-step conversation: the bot asks for your feedback, then forwards your next message to the admin if ADMIN_ID is set; otherwise it replies that your feedback has been recorded. |
 | `/cancel` | Anyone, during `/feedback` | Ends the feedback conversation. |
 | `/broadcast <message>` | Admin only | Demo only: it does not send to any users. It replies "Broadcast ready to send to all users:" followed by the message. Without a message it replies "Usage: /broadcast <message>", and a non-admin gets "Sorry, only the admin can use /broadcast." |
 | Any other text | Anyone | Echoes the message back as "You said: <your message>". |
