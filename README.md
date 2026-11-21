@@ -35,7 +35,7 @@ Get your own Telegram user ID from [@userinfobot](https://t.me/userinfobot) and 
 | Setting | Required | What it is |
 | --- | --- | --- |
 | `BOT_TOKEN` | Yes | The token from @BotFather. If it is missing, the bot exits with: "BOT_TOKEN is missing. Copy .env.example to .env and fill it in." |
-| `ADMIN_ID` | No | Your numeric Telegram user ID, from @userinfobot. It is used for `/broadcast` and for receiving forwarded feedback. The default in `.env.example` is `0`, which means no admin is set. A non-numeric value is logged as a warning and treated as unset. |
+| `ADMIN_ID` | No | Your numeric Telegram user ID, from @userinfobot. It is used for `/broadcast` and for receiving forwarded feedback. The default in `.env.example` is `0`, which means no admin is set. A non-numeric value stops the bot at startup with an error message. |
 
 ## How feedback and broadcast work
 
